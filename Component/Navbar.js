@@ -1,96 +1,82 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
-import { FaHome , FaSearch  } from "react-icons/fa";
-import { MdRestaurantMenu } from "react-icons/md";
-import { IoMdCloseCircle } from "react-icons/io";
-import { IoCall } from "react-icons/io5";
-import { GiHamburgerMenu } from "react-icons/gi";
+import * as React from "react";
+import Link from "next/link";
+
+// Importing Shadcn UI components
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ModeToggle } from "./ModeToggler";
+
+// Icons from Lucide React and React Icons
+import { Menu } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+
+// Navigation links configuration
+const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/quiz", label: "Quiz" },
+    { href: "/contact", label: "Contact" },
+];
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+    return (
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="container flex h-14 items-center px-4">
+                {/* Logo or Site Title */}
+                <div className="mr-4 md:flex">
+                    <Link href="/" className="flex items-center space-x-2 font-bold text-lg">
+                        United Friends Organisation
+                    </Link>
+                </div>
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+                {/* Desktop Navigation */}
+                <nav className="hidden md:flex flex-1 items-center justify-end space-x-6">
+                    {navLinks.map((link) => (
+                        <Link key={link.href} href={link.href}>
+                            <Button variant="ghost" className="text-sm font-medium transition-colors hover:text-primary">
+                                {link.label}
+                            </Button>
+                        </Link>
+                    ))}
+                    <ModeToggle />
+                </nav>
 
-  return (
-    <header className="main-component bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-amber-600 cursor-pointer" style={{ fontFamily: 'var(--font-pacifico)' }}>
-            {process.env.NEXT_PUBLIC_NAME}
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <Link href="/" className="flex text-orange-500 hover:text-orange-700 transition-colors cursor-pointer">
-              <FaHome className='text-xl mx-1' /> Home
-            </Link>
-            <Link href="/about" className="flex text-orange-500 hover:text-orange-700 transition-colors cursor-pointer">
-              About
-            </Link>
-            <Link href="/search" className="flex text-orange-500 hover:text-orange-700 transition-colors cursor-pointer">
-              <FaSearch className='text-md mx-1' /> Search
-            </Link>
-            <Link href="/contact" className="flex text-orange-500 hover:text-orange-700 transition-colors cursor-pointer">
-              <IoCall className='text-md mx-1' /> Contact
-            </Link>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
-          >
-            <div className="w-6 h-6 flex items-center justify-center">
-              {isMenuOpen ? (
-                <IoMdCloseCircle className=" text-xl text-gray-700" />
-              ) : (
-                <GiHamburgerMenu className="ri-menu-line text-xl text-gray-700" />
-              )}
+                {/* Mobile Navigation */}
+                <div className="flex flex-1 items-center justify-end md:hidden">
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <Button
+                                variant="ghost"
+                                className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                            >
+                                <Menu className="h-5 w-5" />
+                                <span className="sr-only">Toggle Menu</span>
+                            </Button>
+                        </SheetTrigger>
+                        <ModeToggle />
+                        <SheetContent side="left" className="pr-0">
+                            <Link href="/" className="pl-4 mt-5">
+                                <span className="font-bold">Shree Krishna FM Services</span>
+                            </Link>
+                            <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
+                                <div className="flex flex-col space-y-3">
+                                    {navLinks.map((link) => (
+                                        <Link key={link.href} href={link.href}>
+                                            {link.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                                <Separator className="my-4" />
+                                {/* Additional mobile links or sections can be added here */}
+                            </ScrollArea>
+                        </SheetContent>
+                    </Sheet>
+                </div>
             </div>
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
-            <nav className="flex flex-col space-y-4">
-              <Link 
-                href="/" 
-                className="text-gray-700 hover:text-amber-600 transition-colors cursor-pointer"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </Link>
-              <Link 
-                href="/about" 
-                className="text-gray-700 hover:text-amber-600 transition-colors cursor-pointer"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link 
-                href="/search" 
-                className="text-gray-700 hover:text-amber-600 transition-colors cursor-pointer"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Search
-              </Link>
-              <Link 
-                href="/contact" 
-                className="text-gray-700 hover:text-amber-600 transition-colors cursor-pointer"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-        )}
-      </div>
-    </header>
-  );
+        </header>
+    );
 }
