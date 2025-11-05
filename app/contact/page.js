@@ -22,7 +22,7 @@ export default function Contact() {
               Contact Us
             </h1>
             <p className="mt-4 text-lg md:text-xl opacity-90">
-              We'd love to hear from you. Make a reservation or get in touch!
+              We&apos;d love to hear from you. Make a reservation or get in touch!
             </p>
           </div>
         </div>

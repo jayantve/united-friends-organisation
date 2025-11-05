@@ -61,7 +61,7 @@ export default function AboutPage() {
 
             {/* CTA */}
             <section className="bg-emerald-600 text-white py-16 px-6 md:px-12 text-center rounded-lg m-6 md:m-12">
-                <h2 className="text-3xl md:text-4xl font-bold">Let's Connect!</h2>
+                <h2 className="text-3xl md:text-4xl font-bold">Let&apos;s Connect!</h2>
                 <p className="mt-4 max-w-xl mx-auto text-lg text-emerald-200">
                     We are always open to new opportunities and collaborations.
                 </p>
