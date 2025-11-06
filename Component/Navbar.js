@@ -3,6 +3,14 @@
 import * as React from "react";
 import Link from "next/link";
 
+import {
+    SignInButton,
+    SignUpButton,
+    SignedIn,
+    SignedOut,
+    UserButton,
+} from '@clerk/nextjs'
+
 // Importing Shadcn UI components
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -19,12 +27,13 @@ const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/quiz", label: "Quiz" },
+    { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="client-side sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-14 items-center px-4">
                 {/* Logo or Site Title */}
                 <div className="mr-4 md:flex">
@@ -43,6 +52,19 @@ export default function Navbar() {
                         </Link>
                     ))}
                     <ModeToggle />
+                    <header className="flex justify-end items-center p-4 gap-4 h-16">
+                        <SignedOut>
+                            <SignInButton />
+                            <SignUpButton>
+                                <Button variant="ghost" className="text-sm font-medium transition-colors hover:text-primary">
+                                    Sign Up
+                                </Button>
+                            </SignUpButton>
+                        </SignedOut>
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
+                    </header>
                 </nav>
 
                 {/* Mobile Navigation */}
@@ -58,6 +80,19 @@ export default function Navbar() {
                             </Button>
                         </SheetTrigger>
                         <ModeToggle />
+                        <header className="flex justify-end items-center p-4 gap-4 h-16">
+                            <SignedOut>
+                                <SignInButton />
+                                <SignUpButton>
+                                    <Button variant="ghost" className="text-sm font-medium transition-colors hover:text-primary">
+                                        Sign Up
+                                    </Button>
+                                </SignUpButton>
+                            </SignedOut>
+                            <SignedIn>
+                                <UserButton />
+                            </SignedIn>
+                        </header>
                         <SheetContent side="left" className="pr-0">
                             <Link href="/" className="pl-4 mt-5">
                                 <span className="font-bold">Shree Krishna FM Services</span>
