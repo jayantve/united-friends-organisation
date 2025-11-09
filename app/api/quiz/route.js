@@ -1,53 +1,53 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 
-export async function POST(req) {
+const OWNER = "jayantve";
+const REPO = "united-friends-organisation-data";
+const DIRECTORY = "quizs";
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-    try {
-        const { slug, title, questions } = await req.json();
-
-        const quizDir = path.join(process.cwd(), "quizs");
-        if (!fs.existsSync(quizDir)) fs.mkdirSync(quizDir);
-
-        const filePath = path.join(quizDir, `${slug}.json`);
-
-        fs.writeFileSync(filePath, JSON.stringify({ slug, title, questions }, null, 2));
-
-        return NextResponse.json({ success: true, message: "Quiz saved" });
-    } catch (error) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
-    }
+async function githubRequest(path, options = {}) {
+    return fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`, {
+        ...options,
+        headers: {
+            Authorization: `Bearer ${GITHUB_TOKEN}`,
+            "Content-Type": "application/json",
+            ...options.headers,
+        },
+        cache: "no-store",
+    }).then((res) => res.json());
 }
 
-
-
-export async function GET() {
+export async function GET(req) {
     try {
-        const quizDir = path.join(process.cwd(), "quizs");
-        const files = fs.readdirSync(quizDir);
+        const { searchParams } = new URL(req.url);
+        const slug = searchParams.get("slug");
 
-        const quizzes = files.map((file) => {
-            const filePath = path.join(quizDir, file);
-            const content = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        if (slug) {
+            const data = await githubRequest(`contents/${DIRECTORY}/${slug}.json`);
 
-            // Convert numeric keys to array
-            const questions = Object.keys(content)
-                .filter((key) => !isNaN(key)) // keep numeric keys
-                .map((key) => content[key]);   // convert values to array items
+            if (data?.content) {
+                const decoded = JSON.parse(Buffer.from(data.content, "base64").toString("utf8"));
+                return NextResponse.json(decoded);
+            }
+            return NextResponse.json({ error: "Quiz not found" }, { status: 404 });
+        }
 
-            const filename = file.replace('.json', '')
+        // Get all files
+        const files = await githubRequest(`contents/${DIRECTORY}`);
+        if (!Array.isArray(files)) return NextResponse.json([]);
 
-
-            return {
-                slug: filename,
-                title: filename,
-                questions,
-            };
-        });
+        const quizzes = await Promise.all(
+            files
+                .filter(f => f.name.endsWith(".json"))
+                .map(async (file) => {
+                    const contentRes = await githubRequest(`contents/${DIRECTORY}/${file.name}`);
+                    const decoded = JSON.parse(Buffer.from(contentRes.content, "base64").toString("utf8"));
+                    return decoded;
+                })
+        );
 
         return NextResponse.json(quizzes);
-    } catch (error) {
-        return NextResponse.json( { error: "Failed to load quizzes", details: error.message }, { status: 500 } );
+    } catch (err) {
+        return NextResponse.json({ success: false, error: err.message }, { status: 500 });
     }
 }

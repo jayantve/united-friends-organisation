@@ -3,14 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 
-import {
-    SignInButton,
-    SignUpButton,
-    SignedIn,
-    SignedOut,
-    UserButton,
-} from '@clerk/nextjs'
-
 // Importing Shadcn UI components
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -52,19 +44,6 @@ export default function Navbar() {
                         </Link>
                     ))}
                     <ModeToggle />
-                    <header className="flex justify-end items-center p-4 gap-4 h-16">
-                        <SignedOut>
-                            <SignInButton />
-                            <SignUpButton>
-                                <Button variant="ghost" className="text-sm font-medium transition-colors hover:text-primary">
-                                    Sign Up
-                                </Button>
-                            </SignUpButton>
-                        </SignedOut>
-                        <SignedIn>
-                            <UserButton />
-                        </SignedIn>
-                    </header>
                 </nav>
 
                 {/* Mobile Navigation */}
@@ -80,19 +59,6 @@ export default function Navbar() {
                             </Button>
                         </SheetTrigger>
                         <ModeToggle />
-                        <header className="flex justify-end items-center p-4 gap-4 h-16">
-                            <SignedOut>
-                                <SignInButton />
-                                <SignUpButton>
-                                    <Button variant="ghost" className="text-sm font-medium transition-colors hover:text-primary">
-                                        Sign Up
-                                    </Button>
-                                </SignUpButton>
-                            </SignedOut>
-                            <SignedIn>
-                                <UserButton />
-                            </SignedIn>
-                        </header>
                         <SheetContent side="left" className="pr-0">
                             <Link href="/" className="pl-4 mt-5">
                                 <span className="font-bold">Shree Krishna FM Services</span>
