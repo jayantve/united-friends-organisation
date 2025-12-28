@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skills } from "@/Component/Data";
+import Link from "next/link";
 
 const SkillCard = ({ skill }) => (
     <Card className="flex flex-col items-center p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300">
@@ -65,9 +66,12 @@ export default function AboutPage() {
                 <p className="mt-4 max-w-xl mx-auto text-lg text-emerald-200">
                     We are always open to new opportunities and collaborations.
                 </p>
+                
+                <Link href='/contact'>
                 <Button variant="secondary" size="lg" className="mt-8">
                     Contact Us
                 </Button>
+                </Link>
             </section>
         </div>
     );

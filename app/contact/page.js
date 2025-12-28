@@ -36,7 +36,7 @@ export default function Contact() {
             <CardHeader>
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <MdPerson className="text-primary text-3xl" />
-              </div>
+              </div> 
               <CardTitle className="mt-4">Visit Us</CardTitle>
             </CardHeader>
             <CardContent className="text-muted-foreground">
@@ -72,23 +72,6 @@ export default function Contact() {
             </CardContent>
           </Card>
 
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="py-16 bg-background">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-6">Find Us</h2>
-
-          <Card className="shadow-sm overflow-hidden mb-10">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d218.83816040510573!2d77.37233450787637!3d28.647422973727206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb0077905a03%3A0xcccc96f40ddd355e!2sCaptain&#39;s%20Vintage%20Restro%20and%20Cafe!5e0!3m2!1sen!2sin!4v1754046789288!5m2!1sen!2sin"
-              className="w-full h-[400px] border-0"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </Card>
         </div>
       </section>
 

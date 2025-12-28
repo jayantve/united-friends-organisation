@@ -5,7 +5,8 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
 // Social media icons from React Icons
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaFacebook,  FaInstagram,  FaWhatsapp   } from "react-icons/fa";
+import { MdOutlineMailOutline , MdCall } from "react-icons/md";
 
 // Data for navigation links
 const footerLinks = [
@@ -29,7 +30,7 @@ const footerLinks = [
   {
     title: "Latest Blog",
     links: [
-      { name: "Starting of United Friends Organisation", href: "/security-gaurd" },
+      { name: "Starting of United Friends Organisation", href: "/Starting-of-United-Friends-Organisation" },
       { name: "Plumber", href: "/plumber" },
       { name: "Electrician", href: "/electrician" },
       { name: "House Keeping", href: "/house-keeping" },
@@ -39,9 +40,9 @@ const footerLinks = [
 
 const socialLinks = [
   { icon: FaFacebook, href: "https://www.facebook.com/shreekrishnafm", label: "Facebook" },
-  { icon: FaWhatsapp, href: "https://wa.me/919650899278", label: "Twitter" },
-  { icon: FaInstagram, href: "#", label: "Instagram" },
-  { icon: FaLinkedin, href: "#", label: "LinkedIn" },
+  { icon: FaWhatsapp, href: "https://wa.me/919599401367", label: "Whatsapp" },
+  { icon: MdCall, href: "tell:+919599401367", label: "Call" },
+  { icon: MdOutlineMailOutline, href: "mailto:WECARESATUFO@gmail.com", label: "Mail" },
 ];
 
 export default function Footer() {

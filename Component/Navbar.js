@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import pic from '@/public/favicon.ico'
 
 // Importing Shadcn UI components
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -12,7 +14,6 @@ import { ModeToggle } from "./ModeToggler";
 
 // Icons from Lucide React and React Icons
 import { Menu } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
 
 // Navigation links configuration
 const navLinks = [
@@ -28,11 +29,14 @@ export default function Navbar() {
         <header className="client-side sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-14 items-center px-4">
                 {/* Logo or Site Title */}
-                <div className="mr-4 md:flex">
-                    <Link href="/" className="flex items-center space-x-2 font-bold text-lg">
-                        United Friends Organisation
+                <div className="mr-4 flex overflow-hidden max-w-[300px]">
+                    <Image src={pic} height={32} width={32} alt="logo" className="rounded-full mx-2 flex" />
+                    <Link href="/" className="flex items-center space-x-2 font-bold text-lg truncate">
+                        <span className="block md:hidden">UFO</span>
+                        <span className="hidden md:block">United Friends Organisation</span>
                     </Link>
                 </div>
+
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex flex-1 items-center justify-end space-x-6">
