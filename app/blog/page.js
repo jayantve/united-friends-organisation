@@ -30,7 +30,7 @@ export default function BlogListPage() {
                 <h2 className="text-2xl font-semibold text-indigo-600 mb-2">
                   {blog.slug.toUpperCase().replaceAll("-", " ")}
                 </h2>
-                <p className="text-gray-600">Click to read more →</p>
+                <p className="text-gray-600">Click to read more  →</p>
               </Link>
             </li>
           ))}
