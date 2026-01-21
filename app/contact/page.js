@@ -13,7 +13,7 @@ export default function Contact() {
       <section
         className="relative h-[60vh] bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://ik.imagekit.io/edvqduwc5k/captain-resturant/image-2')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://cdn.pixabay.com/photo/2016/12/19/10/16/hands-1917895_1280.png')`,
         }}
       >
         <div className="absolute inset-0 flex items-center justify-center text-center text-white px-4">
@@ -22,7 +22,7 @@ export default function Contact() {
               Contact Us
             </h1>
             <p className="mt-4 text-lg md:text-xl opacity-90">
-              We&apos;d love to hear from you. Make a reservation or get in touch!
+              We&apos;d love to hear from you.
             </p>
           </div>
         </div>

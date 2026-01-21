@@ -30,16 +30,13 @@ const footerLinks = [
   {
     title: "Latest Blog",
     links: [
-      { name: "Starting of United Friends Organisation", href: "/Starting-of-United-Friends-Organisation" },
-      { name: "Plumber", href: "/plumber" },
-      { name: "Electrician", href: "/electrician" },
-      { name: "House Keeping", href: "/house-keeping" },
+      { name: "Starting of United Friends Organisation", href: "/blog/Starting-of-United-Friends-Organisation" },
     ],
   },
 ];
 
 const socialLinks = [
-  { icon: FaFacebook, href: "https://www.facebook.com/shreekrishnafm", label: "Facebook" },
+  { icon: FaFacebook, href: "https://www.facebook.com/share/1T1ouEirAX/", label: "Facebook" },
   { icon: FaWhatsapp, href: "https://wa.me/919599401367", label: "Whatsapp" },
   { icon: MdCall, href: "tell:+919599401367", label: "Call" },
   { icon: MdOutlineMailOutline, href: "mailto:WECARESATUFO@gmail.com", label: "Mail" },
